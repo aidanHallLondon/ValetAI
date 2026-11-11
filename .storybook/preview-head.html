@@ -1,0 +1,225 @@
+<style>
+  /* Global Valet Typography & Colors in Storybook Preview */
+  html, body {
+    font-family: var(--primitive-font-sans, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--color-foreground-primary);
+    background-color: var(--surface-background);
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--primitive-font-mono, "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace) !important;
+  }
+
+  /* Storybook Docs (Autodocs / MDX) Theme Integration */
+  .sbdocs {
+    background-color: var(--surface-background) !important;
+    color: var(--color-foreground-primary) !important;
+  }
+
+  .sbdocs-wrapper {
+    background-color: var(--surface-background) !important;
+  }
+
+  .sbdocs-content {
+    color: var(--color-foreground-primary) !important;
+    max-width: 1200px !important;
+  }
+
+  .sbdocs h1, .sbdocs h2, .sbdocs h3, .sbdocs h4, .sbdocs h5, .sbdocs h6 {
+    color: var(--color-foreground-primary) !important;
+    font-family: var(--primitive-font-sans) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+  }
+
+  .sbdocs p, .sbdocs li, .sbdocs span {
+    color: var(--color-foreground-secondary);
+    line-height: var(--primitive-line-height-normal, 1.6);
+  }
+
+  .sbdocs a {
+    color: var(--color-accent-default) !important;
+    text-decoration: none;
+  }
+
+  .sbdocs a:hover {
+    color: var(--color-accent-hover) !important;
+    text-decoration: underline;
+  }
+
+  /* Docs Canvas Preview Container (Eliminates graph paper checkerboard) */
+  .sbdocs-preview,
+  .docs-story {
+    background-color: var(--surface-subtle) !important;
+    background-image: none !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-md, 8px) !important;
+    box-shadow: var(--shadow-card) !important;
+    overflow: hidden !important;
+  }
+
+  .sbdocs-preview .sb-bar {
+    background-color: var(--surface-card) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    color: var(--color-foreground-secondary) !important;
+  }
+
+  .sbdocs-preview .sb-bar button {
+    color: var(--color-foreground-secondary) !important;
+  }
+
+  .sbdocs-preview .sb-bar button:hover {
+    color: var(--color-accent-default) !important;
+    background-color: var(--surface-subtle) !important;
+  }
+
+  /* Story View Frame inside Docs */
+  .docs-story,
+  .docs-story > div,
+  .sbdocs-preview [id^="story--"] {
+    background-color: var(--surface-subtle) !important;
+    background-image: none !important;
+    color: var(--color-foreground-primary) !important;
+  }
+
+  .docblock-code-toggle {
+    background-color: var(--surface-card) !important;
+    color: var(--color-foreground-secondary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-xs, 4px) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+
+  .docblock-code-toggle:hover {
+    background-color: var(--surface-interactive) !important;
+    color: var(--color-foreground-primary) !important;
+  }
+
+  /* Docs ArgsTable / Props Table */
+  table.docblock-argstable,
+  .sb-argstableBlock,
+  .sbdocs table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-md, 8px) !important;
+    background-color: var(--surface-card) !important;
+    box-shadow: var(--shadow-card) !important;
+    overflow: hidden !important;
+    margin: 1.5rem 0 !important;
+  }
+
+  .docblock-argstable thead,
+  .docblock-argstable-head,
+  .sbdocs th,
+  .docblock-argstable th {
+    background-color: var(--surface-subtle) !important;
+    color: var(--color-foreground-primary) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    padding: 10px 14px !important;
+    text-align: left !important;
+  }
+
+  .docblock-argstable tbody tr,
+  .sbdocs tbody tr {
+    background-color: var(--surface-card) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+    transition: background-color var(--motion-duration-hover) var(--motion-easing-default);
+  }
+
+  .docblock-argstable tbody tr:last-child,
+  .sbdocs tbody tr:last-child {
+    border-bottom: none !important;
+  }
+
+  .docblock-argstable td,
+  .sbdocs td {
+    background-color: var(--surface-card) !important;
+    color: var(--color-foreground-secondary) !important;
+    border-color: var(--border-subtle) !important;
+    padding: 10px 14px !important;
+    font-size: 0.85rem !important;
+    vertical-align: middle !important;
+  }
+
+  .docblock-argstable td:first-child,
+  .sbdocs td:first-child {
+    color: var(--color-foreground-primary) !important;
+    font-weight: 600 !important;
+  }
+
+  /* Code Chips & Badges inside ArgsTable */
+  .docblock-argstable code,
+  .sbdocs code,
+  .sb-argstableBlock-code {
+    background-color: var(--surface-subtle) !important;
+    color: var(--color-accent-default) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-xs, 4px) !important;
+    padding: 2px 6px !important;
+    font-size: 0.82em !important;
+    font-family: var(--primitive-font-mono) !important;
+  }
+
+  /* Form Controls & Dropdowns inside ArgsTable */
+  .docblock-argstable select,
+  .docblock-argstable input,
+  .docblock-argstable textarea {
+    background-color: var(--surface-subtle) !important;
+    color: var(--color-foreground-primary) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-xs, 4px) !important;
+    padding: 4px 8px !important;
+    font-size: 0.8rem !important;
+    outline: none !important;
+  }
+
+  .docblock-argstable select:focus,
+  .docblock-argstable input:focus,
+  .docblock-argstable textarea:focus {
+    border-color: var(--color-accent-default) !important;
+  }
+
+  /* Reset buttons inside ArgsTable */
+  .docblock-argstable button[title="Reset controls"] {
+    background: transparent !important;
+    border: none !important;
+    color: var(--color-foreground-muted) !important;
+    cursor: pointer !important;
+  }
+
+  .docblock-argstable button[title="Reset controls"]:hover {
+    color: var(--color-accent-default) !important;
+  }
+
+  /* Code / Pre Blocks */
+  .docblock-source,
+  .sbdocs pre {
+    background-color: var(--surface-card) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--primitive-radius-md, 8px) !important;
+    padding: 1rem !important;
+  }
+
+  /* Custom Scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-subtle, #2f3e5c);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong, #4a5c80);
+  }
+</style>
+

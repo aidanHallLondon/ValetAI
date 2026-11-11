@@ -1,0 +1,11 @@
+<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="valet-shadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="0.85" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.16" />
+    </filter>
+  </defs>
+  <g filter="url(#valet-shadow)">
+    <path d="M2.52631 8.42044C2.52631 4.69978 5.54249 1.68359 9.26315 1.68359H27.7895C31.5101 1.68359 34.5263 4.69978 34.5263 8.42044V26.9468C34.5263 30.6674 31.5101 33.6836 27.7895 33.6836H9.26315C5.54249 33.6836 2.52631 30.6674 2.52631 26.9468V8.42044Z" fill="#046090"/>
+    <path d="M11.5101 12.5762L18.6295 22.7913L25.5425 12.5762" stroke-width="3.78947" stroke-linecap="round" stroke-linejoin="round" stroke="#ffffff"/>
+  </g>
+</svg>

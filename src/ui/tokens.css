@@ -1,0 +1,587 @@
+/* ==========================================================================
+   Valet Design System Tokens
+   Strictly Tiered per Modern CSS & Web Accessibility Standards (WCAG AA 4.5:1+)
+   - Tier 1: Literal Primitives (Light & Dark neutral scales, typography, spacing)
+   - Tier 2: Semantic Tokens (Mapped via light-dark() and [data-theme])
+   - Tier 3: Component & Layout Dimension Tokens
+
+   Storybook Documentation Map:
+   - Tier 1 Literal Primitives:
+     • Dark & Light Neutral Scales: Tokens/Colors › AllColors
+     • Brand & Accent Primaries:    Tokens/Colors › AllColors
+     • Status Palette:              Tokens/Colors › StatusPalette
+     • Typography Stacks & Scale:   Tokens/Typography › TypographyOverview
+     • Spacing Scales:              Tokens/Spacing › SpacingScale
+     • Corner Radii:                Tokens/Radii & Shadows › RadiiAndShadowsOverview
+   - Tier 2 Semantic Tokens:
+     • Theme Mapping (Dark vs Light): Tokens/Colors › ThemeComparison
+     • Agent Bot Colors:              Tokens/Colors › AgentColors
+     • Model Parameter Badges:        Tokens/Colors › ModelBadgeTokens
+     • Semantic Typography & Scaling: Tokens/Typography › TypographyOverview
+     • Depth & Elevation Shadows:     Tokens/Radii & Shadows › RadiiAndShadowsOverview
+   - Tier 3 Layout Dimensions:
+     • Max Width Constraints:       Tokens/Radii & Shadows › RadiiAndShadowsOverview
+   - Accessibility & WCAG Verification:
+     • Full Contrast & Min Font Size: Tokens/Contrast & Accessibility › ContrastMatrix
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     TIER 1: Literal Primitive Scales
+     See Storybook: Tokens/Colors › AllColors
+     -------------------------------------------------------------------------- */
+
+  /* Dark Palette (Slate / Deep Navy)
+     See Storybook: Tokens/Colors › AllColors (Tier 1: Dark Palette) */
+  --primitive-dark-neutral-950: #070a10;
+  --primitive-dark-neutral-900: #0b0f17;
+  --primitive-dark-neutral-850: #101622;
+  --primitive-dark-neutral-800: #141c2b;
+  --primitive-dark-neutral-750: #1a2436;
+  --primitive-dark-neutral-700: #202c42;
+  --primitive-dark-neutral-600: #2f3e5c;
+  --primitive-dark-neutral-500: #4a5c80;
+  --primitive-dark-neutral-400: #869cc5; /* Adjusted for WCAG AA (5.05:1+ on dark elevated surfaces) */
+  --primitive-dark-neutral-300: #9cb1d4;
+  --primitive-dark-neutral-200: #cbd7ed;
+  --primitive-dark-neutral-100: #f1f5f9;
+  --primitive-dark-neutral-50:  #ffffff;
+
+  /* Light Palette (Clean Paper / Editorial Warm White)
+     See Storybook: Tokens/Colors › AllColors (Tier 1: Light Palette) */
+  --primitive-light-neutral-950: #090d16;
+  --primitive-light-neutral-900: #172033;
+  --primitive-light-neutral-800: #2d3b55;
+  --primitive-light-neutral-700: #475569;
+  --primitive-light-neutral-600: #57687f; /* Adjusted for WCAG AA (5.05:1+ on light elevated surfaces) */
+  --primitive-light-neutral-500: #94a3b8;
+  --primitive-light-neutral-400: #cbd5e1;
+  --primitive-light-neutral-300: #e2e8f0;
+  --primitive-light-neutral-200: #edf2f7;
+  --primitive-light-neutral-100: #f8fafc;
+  --primitive-light-neutral-50:  #ffffff;
+
+  /* Accent Brand Primaries (WCAG AA 4.5:1+ on respective surfaces)
+     See Storybook: Tokens/Colors › AllColors (Tier 1: Brand & Accent Primaries) */
+  --primitive-accent-sky-dark: #38bdf8;
+  --primitive-accent-sky-light: #0369a1; /* Sky 700: Delivers 5.93:1 contrast with pure white button text */
+  --primitive-accent-sky-hover-dark: #7dd3fc;
+  --primitive-accent-sky-hover-light: #075985; /* Sky 800 */
+
+  /* Button text contrast: Dark background uses near-black text on bright cyan (#38bdf8); Light uses pure white on deep sky (#0369a1)
+     USAGE SCOPE: EXCLUSIVE TO PRIMARY ACTION BUTTONS. Do not use on general canvas/card surfaces.
+     See Storybook: Tokens/Colors › ThemeComparison */
+  --color-accent-text-on-btn: light-dark(#ffffff, #06101e);
+
+  /* Status Colors
+     See Storybook: Tokens/Colors › StatusPalette */
+  --primitive-success-dark: #4ade80;
+  --primitive-success-light: #166534;
+  --primitive-success-bg-dark: rgba(74, 222, 128, 0.15);
+  --primitive-success-bg-light: #dcfce7;
+  --primitive-success-border-dark: rgba(74, 222, 128, 0.35);
+  --primitive-success-border-light: #86efac;
+
+  --primitive-warning-dark: #fbbf24;
+  --primitive-warning-light: #92400e;
+  --primitive-warning-bg-dark: rgba(251, 191, 36, 0.15);
+  --primitive-warning-bg-light: #fef3c7;
+  --primitive-warning-border-dark: rgba(251, 191, 36, 0.35);
+  --primitive-warning-border-light: #fde68a;
+
+  --primitive-danger-dark: #f87171;
+  --primitive-danger-light: #991b1b;
+  --primitive-danger-bg-dark: rgba(248, 113, 113, 0.15);
+  --primitive-danger-bg-light: #fee2e2;
+  --primitive-danger-border-dark: rgba(248, 113, 113, 0.35);
+  --primitive-danger-border-light: #fca5a5;
+
+  /* Primitive Typography Scales
+     See Storybook: Tokens/Typography › TypographyOverview (Section 1 & 2) */
+  --primitive-font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  --primitive-font-serif: "Newsreader", "Charis SIL", Georgia, serif;
+  --primitive-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --primitive-font-size-xs: 0.75rem;    /* 12px */
+  --primitive-font-size-sm: 0.8125rem;  /* 13px */
+  --primitive-font-size-md: 0.9375rem;  /* 15px */
+  --primitive-font-size-base: 1.0625rem;/* 17px - optimal reading font */
+  --primitive-font-size-lg: 1.1875rem;  /* 19px */
+  --primitive-font-size-xl: 1.375rem;   /* 22px */
+  --primitive-font-size-2xl: 1.625rem;  /* 26px */
+  --primitive-font-size-3xl: 2rem;      /* 32px */
+
+  --primitive-font-weight-regular: 400;
+  --primitive-font-weight-medium: 500;
+  --primitive-font-weight-semibold: 600;
+  --primitive-font-weight-bold: 700;
+  --primitive-font-weight-extrabold: 800;
+
+  --primitive-line-height-tight: 1.25;
+  --primitive-line-height-snug: 1.4;
+  --primitive-line-height-normal: 1.6;
+  --primitive-line-height-relaxed: 1.75;
+
+  /* Primitive Spacing Scales
+     See Storybook: Tokens/Spacing › SpacingScale */
+  --primitive-space-1: 0.25rem;  /* 4px */
+  --primitive-space-2: 0.5rem;   /* 8px */
+  --primitive-space-3: 0.75rem;  /* 12px */
+  --primitive-space-4: 1rem;     /* 16px */
+  --primitive-space-5: 1.25rem;  /* 20px */
+  --primitive-space-6: 1.5rem;   /* 24px */
+  --primitive-space-8: 2rem;     /* 32px */
+  --primitive-space-12: 3rem;    /* 48px */
+
+  /* Primitive Radii
+     See Storybook: Tokens/Radii & Shadows › RadiiAndShadowsOverview (Section 1) */
+  --primitive-radius-xs: 4px;
+  --primitive-radius-sm: 6px;
+  --primitive-radius-md: 8px;
+  --primitive-radius-lg: 12px;
+  --primitive-radius-xl: 16px;
+  --primitive-radius-full: 9999px;
+
+  /* Primitive Timing & Duration Scales
+     See Storybook: Tokens/Timing & Motion › TimingOverview (Section 1) */
+  --primitive-duration-instant: 75ms;    /* Micro-interactions, checkbox toggles */
+  --primitive-duration-fast: 150ms;       /* Hover states, badge fades, button highlights */
+  --primitive-duration-normal: 200ms;     /* Standard UI transitions, tabs, color morphs */
+  --primitive-duration-moderate: 300ms;   /* Dialog/modal reveals, dropdown slide-downs */
+  --primitive-duration-slow: 500ms;       /* Toast dismissals, drawer slide-outs, accordion */
+  --primitive-duration-deliberate: 750ms; /* Complex progress indicators, state sync loops */
+
+  /* Primitive Easing Curves (Cubic Bézier)
+     See Storybook: Tokens/Timing & Motion › TimingOverview (Section 2) */
+  --primitive-easing-linear: linear;
+  --primitive-easing-standard: cubic-bezier(0.2, 0, 0, 1);       /* Smooth acceleration & deceleration */
+  --primitive-easing-entrance: cubic-bezier(0, 0, 0.2, 1);       /* Deceleration curve for entering elements */
+  --primitive-easing-exit: cubic-bezier(0.4, 0, 1, 1);           /* Acceleration curve for exiting elements */
+  --primitive-easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);   /* Snappy spring feedback */
+
+  /* --------------------------------------------------------------------------
+     TIER 2: Semantic Tokens (Adaptive Light / Dark / System)
+     Default: Dark Slate / Deep Navy
+     See Storybook: Tokens/Colors › ThemeComparison
+     WCAG Matrix:  Tokens/Contrast & Accessibility › ContrastMatrix
+     -------------------------------------------------------------------------- */
+  color-scheme: dark;
+
+  /* Surface Colors
+     See Storybook: Tokens/Colors › ThemeComparison */
+  --surface-background: var(--primitive-dark-neutral-900);
+  --surface-card: var(--primitive-dark-neutral-800);
+  --surface-subtle: var(--primitive-dark-neutral-750);
+  --surface-elevated: var(--primitive-dark-neutral-700);
+  --surface-interactive: var(--primitive-dark-neutral-750);
+  --surface-overlay: var(--primitive-dark-neutral-950);
+  --surface-dialog: #1e293b;
+
+  /* Foreground Text Colors (Strictly WCAG AA compliant >= 4.5:1)
+     See Storybook: Tokens/Colors › ThemeComparison
+     See Storybook: Tokens/Contrast & Accessibility › ContrastMatrix */
+  --color-foreground-primary: var(--primitive-dark-neutral-100);
+  --color-foreground-secondary: var(--primitive-dark-neutral-300);
+  --color-foreground-muted: var(--primitive-dark-neutral-400);
+  /* USAGE SCOPE: EXCLUSIVE TO INVERTED HIGH-CONTRAST CHIPS. Do not use on standard theme canvas. */
+  --color-foreground-inverse: var(--primitive-dark-neutral-950);
+
+  /* Borders & Dividers (3:1 minimum component contrast)
+     See Storybook: Tokens/Colors › ThemeComparison */
+  --border-subtle: var(--primitive-dark-neutral-600);
+  --border-strong: var(--primitive-dark-neutral-400);
+
+  /* Brand Accents
+     See Storybook: Tokens/Colors › ThemeComparison */
+  --color-accent-default: var(--primitive-accent-sky-dark);
+  --color-accent-hover: var(--primitive-accent-sky-hover-dark);
+
+  /* Status Tokens
+     See Storybook: Tokens/Colors › StatusPalette */
+  --color-status-success: var(--primitive-success-dark);
+  --color-status-success-bg: var(--primitive-success-bg-dark);
+  --color-status-success-border: var(--primitive-success-border-dark);
+
+  --color-status-warning: var(--primitive-warning-dark);
+  --color-status-warning-bg: var(--primitive-warning-bg-dark);
+  --color-status-warning-border: var(--primitive-warning-border-dark);
+
+  --color-status-danger: var(--primitive-danger-dark);
+  --color-status-danger-bg: var(--primitive-danger-bg-dark);
+  --color-status-danger-border: var(--primitive-danger-border-dark);
+
+  /* Agent Bot Semantic Tokens
+     See Storybook: Tokens/Colors › AgentColors */
+  --color-agent-scout: #0284c7;
+  --color-agent-scout-light: #38bdf8;
+  --color-agent-reader: #3b82f6;
+  --color-agent-reader-light: #60a5fa;
+  --color-agent-organiser: #10b981;
+  --color-agent-organiser-light: #34d399;
+  --color-agent-curator: #8b5cf6;
+  --color-agent-curator-light: #a78bfa;
+  --color-agent-assistant: #6366f1;
+  --color-agent-assistant-light: #818cf8;
+  --color-agent-supervisor: #f59e0b;
+  --color-agent-supervisor-light: #fbbf24;
+
+  /* Model Parameter Badge Tokens
+     See Storybook: Tokens/Colors › ModelBadgeTokens */
+  --color-badge-xl-bg: light-dark(#eef2ff, #1e1b4b);
+  --color-badge-xl-text: light-dark(#3730a3, #e0e7ff);
+  --color-badge-xl-border: light-dark(#818cf8, #4338ca);
+  --color-badge-lg-bg: light-dark(#faf5ff, #311042);
+  --color-badge-lg-text: light-dark(#6b21a8, #f3e8ff);
+  --color-badge-lg-border: light-dark(#c084fc, #7e22ce);
+  --color-badge-md-bg: light-dark(#f0f9ff, #082f49);
+  --color-badge-md-text: light-dark(#0369a1, #e0f2fe);
+  --color-badge-md-border: light-dark(#38bdf8, #0284c7);
+
+  /* Typography Roles with dynamic font-scale adjustment
+     See Storybook: Tokens/Typography › TypographyOverview (Section 5) */
+  --font-scale: 1;
+  --content-font-scale: 1;
+  --font-family-body: var(--primitive-font-sans);
+  --font-family-editorial: var(--primitive-font-sans);
+  --font-family-code: var(--primitive-font-mono);
+
+  --font-size-caption: calc(var(--primitive-font-size-xs) * var(--font-scale));
+  --font-size-body-sm: calc(var(--primitive-font-size-sm) * var(--font-scale));
+  --font-size-body: calc(var(--primitive-font-size-md) * var(--font-scale));
+  --font-size-reading: calc(var(--primitive-font-size-base) * var(--font-scale));
+  --font-size-title-sm: calc(var(--primitive-font-size-lg) * var(--font-scale));
+  --font-size-title-md: calc(var(--primitive-font-size-xl) * var(--font-scale));
+  --font-size-title-lg: calc(var(--primitive-font-size-2xl) * var(--font-scale));
+
+  /* Shadows
+     See Storybook: Tokens/Radii & Shadows › RadiiAndShadowsOverview (Section 2) */
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.6);
+
+  /* Motion & Semantic Timing Cases
+     See Storybook: Tokens/Timing & Motion › TimingOverview (Section 3) */
+  --motion-duration-hover: var(--primitive-duration-fast);
+  --motion-duration-active: var(--primitive-duration-instant);
+  --motion-duration-feedback: var(--primitive-duration-normal);
+  --motion-duration-dropdown: var(--primitive-duration-fast);
+  --motion-duration-dialog: var(--primitive-duration-moderate);
+  --motion-duration-drawer: var(--primitive-duration-moderate);
+  --motion-duration-toast: var(--primitive-duration-slow);
+  --motion-duration-collapse: var(--primitive-duration-slow);
+
+  --motion-easing-default: var(--primitive-easing-standard);
+  --motion-easing-enter: var(--primitive-easing-entrance);
+  --motion-easing-exit: var(--primitive-easing-exit);
+  --motion-easing-bounce: var(--primitive-easing-bounce);
+
+  /* Semantic Compound Transitions */
+  --transition-interactive: all var(--motion-duration-hover) var(--motion-easing-default);
+  --transition-fast: all var(--motion-duration-active) var(--primitive-easing-linear);
+  --transition-color: color var(--motion-duration-hover) var(--motion-easing-default), background-color var(--motion-duration-hover) var(--motion-easing-default), border-color var(--motion-duration-hover) var(--motion-easing-default);
+  --transition-transform: transform var(--motion-duration-hover) var(--motion-easing-default);
+  --transition-dialog: transform var(--motion-duration-dialog) var(--motion-easing-enter), opacity var(--motion-duration-dialog) var(--motion-easing-enter);
+  --transition-drawer: transform var(--motion-duration-drawer) var(--motion-easing-enter);
+  --transition-fade: opacity var(--motion-duration-feedback) var(--motion-easing-default);
+  --transition-toast: transform var(--motion-duration-toast) var(--motion-easing-bounce), opacity var(--motion-duration-toast) var(--motion-easing-default);
+
+  /* --------------------------------------------------------------------------
+     TIER 3: Layout & Component Dimension Tokens
+     See Storybook: Tokens/Radii & Shadows › RadiiAndShadowsOverview (Section 3)
+     -------------------------------------------------------------------------- */
+  --feed-max-width: 720px;
+  --command-center-max-width: 1480px;
+}
+
+/* Explicit Light Theme Overrides
+   See Storybook: Tokens/Colors › ThemeComparison */
+html[data-theme="light"],
+:root[data-theme="light"],
+[data-theme="light"],
+[data-color-scheme="light"] {
+  color-scheme: light;
+  --color-accent-text-on-btn: #ffffff;
+
+  /* Surface Colors */
+  --surface-background: var(--primitive-light-neutral-100);
+  --surface-card: var(--primitive-light-neutral-50);
+  --surface-subtle: var(--primitive-light-neutral-100);
+  --surface-elevated: var(--primitive-light-neutral-200);
+  --surface-interactive: var(--primitive-light-neutral-200);
+  --surface-overlay: var(--primitive-light-neutral-50);
+  --surface-dialog: #ffffff;
+
+  /* Foreground Text Colors */
+  --color-foreground-primary: var(--primitive-light-neutral-950);
+  --color-foreground-secondary: var(--primitive-light-neutral-700);
+  --color-foreground-muted: var(--primitive-light-neutral-600);
+  --color-foreground-inverse: var(--primitive-light-neutral-50);
+
+  /* Borders & Dividers */
+  --border-subtle: var(--primitive-light-neutral-300);
+  --border-strong: var(--primitive-light-neutral-500);
+
+  /* Brand Accents */
+  --color-accent-default: var(--primitive-accent-sky-light);
+  --color-accent-hover: var(--primitive-accent-sky-hover-light);
+
+  /* Status Tokens */
+  --color-status-success: var(--primitive-success-light);
+  --color-status-success-bg: var(--primitive-success-bg-light);
+  --color-status-success-border: var(--primitive-success-border-light);
+
+  --color-status-warning: var(--primitive-warning-light);
+  --color-status-warning-bg: var(--primitive-warning-bg-light);
+  --color-status-warning-border: var(--primitive-warning-border-light);
+
+  --color-status-danger: var(--primitive-danger-light);
+  --color-status-danger-bg: var(--primitive-danger-bg-light);
+  --color-status-danger-border: var(--primitive-danger-border-light);
+
+  /* Model Parameter Badge Tokens */
+  --color-badge-xl-bg: #eef2ff;
+  --color-badge-xl-text: #3730a3;
+  --color-badge-xl-border: #818cf8;
+  --color-badge-lg-bg: #faf5ff;
+  --color-badge-lg-text: #6b21a8;
+  --color-badge-lg-border: #c084fc;
+  --color-badge-md-bg: #f0f9ff;
+  --color-badge-md-text: #0369a1;
+  --color-badge-md-border: #38bdf8;
+
+  /* Agent Bot Semantic Tokens (Light Theme WCAG AA >= 4.5:1 on Light Surfaces) */
+  --color-agent-scout: #0369a1;     /* 5.93:1 on white */
+  --color-agent-scout-light: #0284c7;
+  --color-agent-reader: #1d4ed8;    /* 6.70:1 on white */
+  --color-agent-reader-light: #2563eb;
+  --color-agent-organiser: #047857; /* 5.48:1 on white */
+  --color-agent-organiser-light: #059669;
+  --color-agent-curator: #6d28d9;   /* 7.10:1 on white */
+  --color-agent-curator-light: #7c3aed;
+  --color-agent-assistant: #4338ca; /* 7.90:1 on white */
+  --color-agent-assistant-light: #4f46e5;
+  --color-agent-supervisor: #a14a08;/* 6.00:1 on white */
+  --color-agent-supervisor-light: #b45309;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-modal: 0 12px 32px rgba(15, 23, 42, 0.15);
+}
+
+/* Explicit Dark Theme Overrides
+   See Storybook: Tokens/Colors › ThemeComparison */
+html[data-theme="dark"],
+:root[data-theme="dark"],
+[data-theme="dark"],
+[data-color-scheme="dark"] {
+  color-scheme: dark;
+  --color-accent-text-on-btn: #06101e;
+
+  /* Surface Colors */
+  --surface-background: var(--primitive-dark-neutral-900);
+  --surface-card: var(--primitive-dark-neutral-800);
+  --surface-subtle: var(--primitive-dark-neutral-750);
+  --surface-elevated: var(--primitive-dark-neutral-700);
+  --surface-interactive: var(--primitive-dark-neutral-750);
+  --surface-overlay: var(--primitive-dark-neutral-950);
+  --surface-dialog: #1e293b;
+
+  /* Foreground Text Colors */
+  --color-foreground-primary: var(--primitive-dark-neutral-100);
+  --color-foreground-secondary: var(--primitive-dark-neutral-300);
+  --color-foreground-muted: var(--primitive-dark-neutral-400);
+  --color-foreground-inverse: var(--primitive-dark-neutral-950);
+
+  /* Borders & Dividers */
+  --border-subtle: var(--primitive-dark-neutral-600);
+  --border-strong: var(--primitive-dark-neutral-400);
+
+  /* Brand Accents */
+  --color-accent-default: var(--primitive-accent-sky-dark);
+  --color-accent-hover: var(--primitive-accent-sky-hover-dark);
+
+  /* Status Tokens */
+  --color-status-success: var(--primitive-success-dark);
+  --color-status-success-bg: var(--primitive-success-bg-dark);
+  --color-status-success-border: var(--primitive-success-border-dark);
+
+  --color-status-warning: var(--primitive-warning-dark);
+  --color-status-warning-bg: var(--primitive-warning-bg-dark);
+  --color-status-warning-border: var(--primitive-warning-border-dark);
+
+  --color-status-danger: var(--primitive-danger-dark);
+  --color-status-danger-bg: var(--primitive-danger-bg-dark);
+  --color-status-danger-border: var(--primitive-danger-border-dark);
+
+  /* Agent Bot Semantic Tokens */
+  --color-agent-scout: #0284c7;
+  --color-agent-scout-light: #38bdf8;
+  --color-agent-reader: #3b82f6;
+  --color-agent-reader-light: #60a5fa;
+  --color-agent-organiser: #10b981;
+  --color-agent-organiser-light: #34d399;
+  --color-agent-curator: #8b5cf6;
+  --color-agent-curator-light: #a78bfa;
+  --color-agent-assistant: #6366f1;
+  --color-agent-assistant-light: #818cf8;
+  --color-agent-supervisor: #f59e0b;
+  --color-agent-supervisor-light: #fbbf24;
+
+  /* Model Parameter Badge Tokens */
+  --color-badge-xl-bg: #1e1b4b;
+  --color-badge-xl-text: #e0e7ff;
+  --color-badge-xl-border: #4338ca;
+  --color-badge-lg-bg: #311042;
+  --color-badge-lg-text: #f3e8ff;
+  --color-badge-lg-border: #7e22ce;
+  --color-badge-md-bg: #082f49;
+  --color-badge-md-text: #e0f2fe;
+  --color-badge-md-border: #0284c7;
+
+  /* Shadows */
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 20px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* System Preference: Light (when no explicit user override) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]):not([data-color-scheme="dark"]) {
+    color-scheme: light;
+    --color-accent-text-on-btn: #ffffff;
+
+    --surface-background: var(--primitive-light-neutral-100);
+    --surface-card: var(--primitive-light-neutral-50);
+    --surface-subtle: var(--primitive-light-neutral-100);
+    --surface-elevated: var(--primitive-light-neutral-200);
+    --surface-interactive: var(--primitive-light-neutral-200);
+    --surface-overlay: var(--primitive-light-neutral-50);
+    --surface-dialog: #ffffff;
+
+    --color-foreground-primary: var(--primitive-light-neutral-950);
+    --color-foreground-secondary: var(--primitive-light-neutral-700);
+    --color-foreground-muted: var(--primitive-light-neutral-600);
+    --color-foreground-inverse: var(--primitive-light-neutral-50);
+
+    --border-subtle: var(--primitive-light-neutral-300);
+    --border-strong: var(--primitive-light-neutral-500);
+
+    --color-accent-default: var(--primitive-accent-sky-light);
+    --color-accent-hover: var(--primitive-accent-sky-hover-light);
+
+    --color-status-success: var(--primitive-success-light);
+    --color-status-success-bg: var(--primitive-success-bg-light);
+    --color-status-success-border: var(--primitive-success-border-light);
+
+    --color-status-warning: var(--primitive-warning-light);
+    --color-status-warning-bg: var(--primitive-warning-bg-light);
+    --color-status-warning-border: var(--primitive-warning-border-light);
+
+    --color-status-danger: var(--primitive-danger-light);
+    --color-status-danger-bg: var(--primitive-danger-bg-light);
+    --color-status-danger-border: var(--primitive-danger-border-light);
+
+    /* Model Parameter Badge Tokens */
+    --color-badge-xl-bg: #eef2ff;
+    --color-badge-xl-text: #3730a3;
+    --color-badge-xl-border: #818cf8;
+    --color-badge-lg-bg: #faf5ff;
+    --color-badge-lg-text: #6b21a8;
+    --color-badge-lg-border: #c084fc;
+    --color-badge-md-bg: #f0f9ff;
+    --color-badge-md-text: #0369a1;
+    --color-badge-md-border: #38bdf8;
+
+    /* Agent Bot Semantic Tokens (Light Theme WCAG AA >= 4.5:1 on Light Surfaces) */
+    --color-agent-scout: #0369a1;
+    --color-agent-scout-light: #0284c7;
+    --color-agent-reader: #1d4ed8;
+    --color-agent-reader-light: #2563eb;
+    --color-agent-organiser: #047857;
+    --color-agent-organiser-light: #059669;
+    --color-agent-curator: #6d28d9;
+    --color-agent-curator-light: #7c3aed;
+    --color-agent-assistant: #4338ca;
+    --color-agent-assistant-light: #4f46e5;
+    --color-agent-supervisor: #a14a08;
+    --color-agent-supervisor-light: #b45309;
+
+    --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+    --shadow-modal: 0 12px 32px rgba(15, 23, 42, 0.15);
+  }
+}
+
+/* Dynamic Font Scaling: Relative HTML root sizing scales every single rem in the app proportionally
+   See Storybook: Tokens/Typography › TypographyOverview (Section 5: Dynamic Scaling) */
+html,
+:root {
+  font-size: 16px;
+  --font-scale: 1;
+  --content-font-scale: 1;
+}
+
+html[data-font-size="standard"],
+:root[data-font-size="standard"] {
+  font-size: 16px;
+  --font-scale: 1;
+  --content-font-scale: 1;
+}
+
+html[data-font-size="medium"],
+:root[data-font-size="medium"] {
+  font-size: 18.5px;
+  --font-scale: 1.15;
+  --content-font-scale: 1.15;
+  --font-size-caption: calc(var(--primitive-font-size-xs) * var(--font-scale));
+  --font-size-body-sm: calc(var(--primitive-font-size-sm) * var(--font-scale));
+  --font-size-body: calc(var(--primitive-font-size-md) * var(--font-scale));
+  --font-size-reading: calc(var(--primitive-font-size-base) * var(--font-scale));
+  --font-size-title-sm: calc(var(--primitive-font-size-lg) * var(--font-scale));
+  --font-size-title-md: calc(var(--primitive-font-size-xl) * var(--font-scale));
+  --font-size-title-lg: calc(var(--primitive-font-size-2xl) * var(--font-scale));
+}
+
+html[data-font-size="large"],
+:root[data-font-size="large"] {
+  font-size: 21.5px;
+  --font-scale: 1.35;
+  --content-font-scale: 1.30;
+  --font-size-caption: calc(var(--primitive-font-size-xs) * var(--font-scale));
+  --font-size-body-sm: calc(var(--primitive-font-size-sm) * var(--font-scale));
+  --font-size-body: calc(var(--primitive-font-size-md) * var(--font-scale));
+  --font-size-reading: calc(var(--primitive-font-size-base) * var(--font-scale));
+  --font-size-title-sm: calc(var(--primitive-font-size-lg) * var(--font-scale));
+  --font-size-title-md: calc(var(--primitive-font-size-xl) * var(--font-scale));
+  --font-size-title-lg: calc(var(--primitive-font-size-2xl) * var(--font-scale));
+}
+
+/* Accessibility: Honor User Preference for Reduced Motion
+   See Storybook: Tokens/Timing & Motion › TimingOverview (Section 4) */
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  [data-theme="light"],
+  [data-theme="dark"] {
+    --primitive-duration-instant: 0ms;
+    --primitive-duration-fast: 0ms;
+    --primitive-duration-normal: 0ms;
+    --primitive-duration-moderate: 0ms;
+    --primitive-duration-slow: 0ms;
+    --primitive-duration-deliberate: 0ms;
+
+    --transition-interactive: none;
+    --transition-fast: none;
+    --transition-color: none;
+    --transition-transform: none;
+    --transition-dialog: none;
+    --transition-drawer: none;
+    --transition-fade: none;
+    --transition-toast: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

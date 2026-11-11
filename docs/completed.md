@@ -1,0 +1,292 @@
+# Valet Completed Tasks
+
+This document archives completed project tasks.
+
+---
+
+## Completed Tasks
+
+- [x] **ASD-STE100 Documentation:** Rewrote project documentation using Simplified Technical English rules.
+- [x] **Root Router Setup:** Created root `docs.md` file for fast `@docs` context inclusion.
+- [x] **Project Rules Defined:** Created `docs/rules.md` covering documentation, engineering, and UX design token rules.
+- [x] **AI Agents Documented:** Created `docs/agents.md` detailing the six agents and their editable prompt interfaces.
+- [x] **Docstrings Applied:** Added ASD-STE100 docstrings across `src/gatherer`, `src/agent`, `src/db`, and `src/ui`.
+- [x] **Project Architecture Review:** Conducted comprehensive codebase inspection covering architecture, UX, database, and pipeline.
+- [x] **Design Tokens Compliance:** Replaced all hardcoded hex colors in `src/ui/styles.css` with semantic CSS variables from `src/ui/tokens.css`. Added semantic tokens for agents and parameter badges. Verified theme contrast and Vite compilation.
+- [x] **UI Code Splitting:** Implemented lazy loading for `CommandCenter` and settings tabs using `React.lazy` and `Suspense`. Reduced initial bundle size by 36% (174 kB reduction).
+- [x] **Removed Redundant Utility File:** Deleted duplicate wrapper `src/ui/utils/temperature.ts`. Updated all consumer components to import directly from `algorithm.ts`.
+- [x] **Unified Toast Notifications:** Added accessible toast context, hook, and container using semantic design tokens and ARIA live regions. Replaced all raw window.alert calls.
+- [x] **Parallel Feed Fetching:** Added bounded concurrency pool (4 simultaneous workers) to `src/gatherer/index.ts`. Isolated fetch errors and preserved atomic database inserts.
+- [x] **Health Check Endpoints:** Added `/healthz` and `/api/health` routes in `src/ui/index.ts` returning process uptime, memory metrics, and database status.
+- [x] **Automated Test Suite:** Installed and configured Vitest with `npm test` script. Created 22 automated unit tests across core utilities, ranking algorithms, and health check routes.
+- [x] **Batch Agent Processing:** Added atomic batch claiming (`claimPendingContentBatch`) and execution in `src/agent/index.ts`. Reduced idle polling intervals by processing items in configurable batches.
+- [x] **Structured Database Migrations:** Created versioned migration ledger `_schema_migrations` and runner in `src/db/migrations.ts`. Replaced 25 fragile ad-hoc try/catch `ALTER TABLE` statements.
+- [x] **Styles Modularity:** Split monolithic `src/ui/styles.css` (8,241 lines) into 9 feature stylesheets under `src/ui/styles/`. Reduced stylesheet entry point to 12 lines.
+- [x] **Modular Agent Components:** Split `src/ui/components/AiSection.tsx` (3,802 lines) into 7 dedicated agent views and a shared editor frame in `src/ui/components/agents/`.
+- [x] **Modular Express Routers:** Split `src/ui/index.ts` (2,412 lines) into 7 route modules (`content`, `sources`, `stories`, `taxonomy`, `telemetry`, `system`, `ai`, `library`). Reduced entry file to 150 lines.
+- [x] **Normalized UI Component Library:** Created reusable UI primitives in `src/ui/components/common/` (`Button`, `Badge`, `Card`, `Modal`, `Input`, `Textarea`, `Select`, `Toggle`, `MetricCard`, `EmptyState`, `NotificationBanner`). Added token-based styles in `src/ui/styles/components.css`.
+- [x] **Storybook 8 Integration:** Installed and configured Storybook with Vite builder and React 19. Added interactive stories for all normalized primitives and agent avatars. Added Storybook workbench directly to the bottom of the settings menu in `CommandCenter.tsx`.
+- [x] **Storybook Color Palette Stories:** Added interactive color palette stories in `Tokens/Colors` displaying all literal neutrals, agent colors, brand accents, and status tokens with click-to-copy tokens.
+- [x] **Storybook Design Tokens System:** Added comprehensive token documentation stories covering Typography (font stacks, scale, weights), Spacing (grid step scale), and Radii & Shadows (elevation, corners, container max-widths) in `Tokens/`.
+- [x] **Dark and Light Theme Documentation:** Added side-by-side Dark vs Light theme token mapping and interactive sandbox switcher to `Tokens/Colors`. Added global theme toolbar switcher in `.storybook/preview.ts`.
+- [x] **WCAG Contrast & Accessibility Matrix:** Created `Tokens/Contrast & Accessibility` with exact mathematical relative luminance calculations for all surface backgrounds and text foregrounds. Included WCAG tiers (AAA, AA, AA Large), minimum font size rules, and visual previews.
+- [x] **Token and Storybook Bidirectional Linking:** Aligned token names across `tokens.css` and Storybook. Added comments in `tokens.css` linking every section to its Storybook story. Added model parameter badge tokens, line heights, and dynamic font scale documentation to Storybook.
+- [x] **WCAG Contrast Remediation & Token Scoping:** Adjusted muted text, light button accent, and light agent bot colors to achieve 100% WCAG AA/AAA pass rate across all supported UI pairings. Added token usage scopes in `tokens.css` and created an Excluded & Scoped Combinations Guide in Storybook.
+- [x] **Storybook Shell & Content Theming:** Applied Valet typography (`Inter` / `JetBrains Mono`) and token-based colors across both the Storybook manager shell and docs preview iframe. Created `valetDark` and `valetLight` themes with matching custom scrollbars.
+- [x] **Theme-Adaptive Code & Token Styling:** Replaced hardcoded literal `--primitive-accent-sky-dark` with adaptive `--color-accent-default` across all story cards and tables. Resolved light theme contrast failure (increased from 1.6:1 to 5.93:1 WCAG AA pass on white card surfaces).
+- [x] **Codebase Primitives Audit & Normalization:** Conducted comprehensive audit of `src/ui/` stylesheets and components for hardcoded literal color primitives. Replaced static `--primitive-dark-*`, `--primitive-light-*`, and `--primitive-accent-*` colors with adaptive Tier 2 semantic variables (`--color-accent-default`, `--color-foreground-inverse`, `--color-accent-text-on-btn`, `--color-status-*`). Fixed typo `--primitive-radii-*` in `database.css` and `command-center.css`.
+- [x] **Storybook Docs Nodes Remediation:** Enabled `autodocs` across all 16 story suites (Components and Token scales). Attached component references and documentation descriptions to `Input.stories.tsx` and all common primitives. Verified all 16 docs nodes render content and controls without error.
+- [x] **Timing Primitives & Semantic Motion Cases:** Added Tier 1 duration scale (`75ms` to `750ms`) and cubic-bezier easing curves (`standard`, `entrance`, `exit`, `bounce`, `linear`) to `tokens.css`. Created Tier 2 semantic motion cases (`--motion-duration-*`, `--transition-*`). Added interactive documentation and testing playground in `Tokens/Timing & Motion`. Included accessible `@media (prefers-reduced-motion: reduce)` zeroing rules.
+- [x] **Font Scale & Typography Integration in Storybook:** Documented the two-tier fluid typography engine linking `<FontSizeToggle />` to `tokens.css`. Added global Storybook toolbar font-size switcher (`Standard`, `Medium`, `Large`) in `.storybook/preview.ts`. Created interactive `FontSizeScaleSystem` story in `Tokens/Typography` with live measurement inspector and side-by-side comparison mode.
+- [x] **Storybook Component Hierarchy Restructure:** Replaced the flat `Common/` and `Agents/` groups with an Atomic Design hierarchy (`Tokens`, `Primitives`, `Combined Components`, `Complex Components`, `Layouts`). Added stories for `FontSizeToggle`, `FeedItemCard`, `AppHeader`, and `NavigationSidebar`. Configured `storySort` order in `.storybook/preview.ts`.
+- [x] **Storybook Docs Styling & Theme Isolation:** Fixed frankenstein styling in Light mode where table rows and preview frames retained hardcoded dark Emotion styles while the page background was white. Eliminated the checkerboard grid background on `.sbdocs-preview`. Mapped all `.docblock-argstable`, `.docs-story`, and preview bars to semantic CSS variables (`var(--surface-card)`, `var(--surface-subtle)`, `var(--border-subtle)`). Verified cohesive rendering in both Light and Dark themes.
+- [x] **Component Library Completeness & Contrast Remediation:** Replaced low-contrast cyan code text in `Colors.stories.tsx` with high-contrast `var(--color-foreground-secondary)` on subtle pill containers (`var(--surface-subtle)`), ensuring 100% WCAG AA compliance in both Light and Dark themes. Audited the full production codebase and implemented interactive stories for all remaining unrepresented components across the 5-tier hierarchy: `PromptAuditorWidget`, `AttachedEditorFrame`, `AgentTabs` (Scout, Reader, Organiser, Curator, Assistant, Supervisor, AboutMe), `ReaderModal`, `FeedView`, `CommandCenter`, and production `FeedCard`. Verified 0 TypeScript errors, 30/30 unit tests passing, and 93 active Storybook stories.
+- [x] **Layout Components Extraction:** Extracted inlined layout structures into standalone, reusable components:
+  - Extracted [`AppHeader`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/AppHeader.tsx) from `src/ui/App.tsx`, reducing 66 lines of inline markup while encapsulating brand lockup, view switcher (`Feed` vs `Settings`), and header utility tools (`PauseToggle`, `HeaderTokenBadge`, `FontSizeToggle`, `ThemeToggle`).
+  - Extracted [`NavigationSidebar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/NavigationSidebar.tsx) from `src/ui/components/CommandCenter.tsx`, reducing over 320 lines of inlined drawer and navigation markup while encapsulating drawer backdrop, category grouping, badges, queue indicator, and bot roster.
+  - Connected both real production components directly into their Storybook story suites ([`AppHeader.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/AppHeader.stories.tsx) and [`NavigationSidebar.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/NavigationSidebar.stories.tsx)).
+  - Wrapped all Storybook stories in [`.storybook/preview.ts`](file:///Users/aidanhall/Documents/code/ValetAI/.storybook/preview.ts) with [`ToastProvider`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/context/ToastContext.tsx) in both story and docs view modes, resolving `useToast must be used within a ToastProvider` runtime error in complex layout stories.
+  - Implemented interactive [`ComponentAnatomy`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/AnatomyCard.tsx) visual inspectors and composition documentation matrices across all Layouts, Complex Components, and Combined Components in Storybook.
+  - Reclassified [`BotAvatar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/BotAvatar.tsx) from Complex Components to **`Primitives/BotAvatar`**, reflecting its true architectural role as an indivisible pure SVG leaf node (Atom) and resolving inverted dependencies across `FeedCardMetaRow`, `FeedItemCard`, and `NavigationSidebar`.
+  - Reclassified **`AgentTabs`** from Complex Components to **`Layouts/AgentViews`**, reflecting its role as a full-page workspace layout (`.agent-page-container`, `.agent-page-header`, hero configuration cards, multi-column analytics, and docked prompt editor frames). Updated story sorting, component anatomy matrix, and parent layout composition in `Layouts/CommandCenter`.
+- [x] **UI Component Decomposition (Phase 1):** Extracted high-frequency inlined controls into reusable components across the Atomic tiers:
+  - Extracted [`StageHoldRunButton`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/StageHoldRunButton.tsx) into **`Primitives/StageHoldRunButton`**, encapsulating timed click-vs-long-press handlers (650ms hold detection) with radial progress feedback.
+  - Extracted [`LayoutSwitcher`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/LayoutSwitcher.tsx) into **`Combined Components/LayoutSwitcher`**, reducing 74 lines of inline SVG markup from `FeedView.tsx` while standardizing the 3-mode layout switcher (`list`, `grid`, `compact`).
+  - Extracted [`BotTimingRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/agents/common/BotTimingRow.tsx) into **`Combined Components/BotTimingRow`**, unifying rolling average request duration, latency telemetry, and benchmark resets.
+  - Extracted [`AgentPageHeader`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/agents/common/AgentPageHeader.tsx) into **`Layouts/AgentPageHeader`**, standardizing top header regions across all 7 agent tabs (`Scout`, `Reader`, `Organiser`, `Curator`, `Assistant`, `Supervisor`, `AboutMe`) and `AiSection` server configurations.
+- [x] **UI Component Decomposition (Phase 2):** Extracted heavy rows and cards out of monolithic management panes:
+  - Extracted [`SourceItemRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/sources/SourceItemRow.tsx) into **`Complex Components/SourceItemRow`**, reducing over 310 lines from `GathererSection.tsx` while isolating drag handles, favicon resolution, feed health indicators, article counters, weight controls, and lifecycle actions.
+  - Extracted [`SuggestedSourceRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/sources/SuggestedSourceRow.tsx) into **`Complex Components/SuggestedSourceRow`**, reducing 130 lines from `GathererSection.tsx` while standardizing AI-suggested feeds with suitability score pills and 1-click subscription.
+  - Extracted [`CompoundRuleItem`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/algorithm/CompoundRuleItem.tsx) into **`Combined Components/CompoundRuleItem`**, standardizing multi-tag compound rule rows (`Tag A + Tag B →`) with directional glyphs, vector voting, and deletion triggers.
+  - Extracted [`ConceptVoteRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/algorithm/ConceptVoteRow.tsx) into **`Complex Components/ConceptVoteRow`**, reducing over 300 lines from `AlgorithmSection.tsx` while isolating concept categorization, article count triggers, up/down voting steppers, hide toggles, and expandable compound rule drawers.
+  - Added interactive Storybook suites for all 4 extracted components, bringing the Storybook suite count to 39 component suites.
+  - Verified 0 TypeScript compilation errors and 100% test pass rate (30/30 Vitest).
+  - Added interactive Storybook suites for all 4 extracted components with complete component anatomy, variant sandboxes, and documentation.
+  - Verified 0 TypeScript compilation errors and 100% test pass rate (30/30 Vitest).
+- [x] **UI Component Decomposition (Phase 3):** Extracted inlined data views, filter bars, diagnostic cards, and cluster drawers across the application:
+  - Extracted [`PipelineControlBar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/database/PipelineControlBar.tsx) into **`Combined Components/PipelineControlBar`**, encapsulating view title, queue counters, batch execution triggers ("Stop all", "Refresh issues", "Rerun all"), and main status filter toggle pills.
+  - Extracted [`PipelineTableRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/database/PipelineTableRow.tsx) into **`Complex Components/PipelineTableRow`**, encapsulating article lifecycle row rendering, three-stage agent bot discs (Reader, Organiser, Curator) with active halo spinners, status badges, and action dropdown. Reduced `DatabaseSection.tsx` from 1,509 lines down to 1,092 lines.
+  - Extracted [`StoryClusterDrawer`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/StoryClusterDrawer.tsx) into **`Complex Components/StoryClusterDrawer`**, encapsulating collapsible multi-source news coverage collation with nested child article cards, publication recency, and source links. Reduced `FeedCard.tsx` by 88 lines.
+  - Extracted [`FeedFilterBar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedFilterBar.tsx) into **`Combined Components/FeedFilterBar`**, isolating stream mode pills ("All", "Favourites", "Urgent"), unread and raw inclusion toggles, and dynamic entity/source filter chips with in-pill vector steering. Reduced `FeedView.tsx` from 1,037 lines down to 778 lines.
+  - Extracted [`AgentLiveRequestCard`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/AgentLiveRequestCard.tsx) into **`Complex Components/AgentLiveRequestCard`**, isolating real-time bot execution diagnostic feedback with active spinning halos and collapsible prompt payloads.
+  - Extracted [`AgentIssueCard`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/AgentIssueCard.tsx) into **`Complex Components/AgentIssueCard`**, isolating failure diagnostics, error trace inspection, sent prompt preview, and 1-click retry trigger. Reduced `ReaderModal.tsx` by 80 lines.
+  - Extracted [`ServerModelsTable`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/ai/ServerModelsTable.tsx) into **`Complex Components/ServerModelsTable`**, isolating server inference discovery tables, architecture tags, context window metrics, and bot assignment tags. Reduced `AiSection.tsx` by 145 lines.
+  - Added interactive Storybook suites for all 7 extracted components with complete component anatomy, variant sandboxes, and documentation.
+  - Updated Storybook sort hierarchy in `.storybook/preview.ts`.
+  - Rebuilt static Storybook bundle with 0 errors (`npm run build-storybook`).
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`) and 100% test pass rate (30/30 Vitest).
+  - Started and verified PM2 services (`ui`, `agent`, `gatherer`) with healthy status on port 3001.
+- [x] **Component Hierarchy and 5-Layer Naming Parity:** Established strict bidirectional 1:1 parity across Storybook titles, filesystem paths, TypeScript symbols, HTML root classes, and CSS selectors:
+  - Documented strict rules in [`docs/rules.md`](file:///Users/aidanhall/Documents/code/ValetAI/docs/rules.md) (Section 4) using ASD-STE100 rules.
+  - Standardized root HTML classes across layout and combined components (`.app-header`, `.navigation-sidebar`, `.feed-view`, `.command-center`, `.font-size-toggle`, `.theme-toggle`, `.pause-toggle`, `.prompt-auditor-widget`, `.token-cost-modal`, `.feed-card-meta-row`, `.valet-button`).
+  - Aligned Storybook titles with exact component names (`Primitives/Input`, `Primitives/Modal`, `Layouts/AgentTabs`, `Complex Components/FeedCard`).
+  - Replaced all mock components in stories with real production components (`PauseToggle`, `ThemeToggle`, `HeaderTokenBadge`, `FeedCardMetaRow`, `TokenCostModal`) using controlled preview props.
+  - Relocated token stories from `src/ui/components/common/__stories__/` to [`src/ui/tokens/__stories__/`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/tokens/__stories__).
+  - Relocated feed components and stories to [`src/ui/components/feed/`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed) (`FeedView`, `FeedCard`, `FeedCardMetaRow`).
+  - Relocated reader components and stories to [`src/ui/components/reader/`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader) (`ReaderModal`).
+  - Relocated layout components and stories to [`src/ui/components/layouts/`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts) (`AppHeader`, `NavigationSidebar`, `CommandCenter`).
+  - Relocated prompt editing components and stories to [`src/ui/components/agents/common/`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/agents/common) (`AttachedEditorFrame`, `PromptAuditorWidget`, `BotTimingRow`, `AgentPageHeader`).
+  - Relocated `BotAvatar` to [`src/ui/components/common/BotAvatar.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/BotAvatar.tsx) as an Atomic Primitive.
+  - Updated Storybook sort hierarchy in `.storybook/preview.ts`.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`), 100% test pass rate (30/30 Vitest), and built clean static Storybook bundle (`npm run build-storybook`). Restarted PM2 `ui` service.
+- [x] **Combined vs Complex Component Reclassification:** Formalized the 3-point Atomic distinction (State & Logic, Layout & Spatial Awareness, Coupling & Reusability) in [`docs/rules.md`](file:///Users/aidanhall/Documents/code/ValetAI/docs/rules.md) (Section 4.1):
+  - Reclassified [`FeedFilterBar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedFilterBar.tsx) from Combined to **`Complex Components/FeedFilterBar`** (operates as a mini-layout dictating flex/pill zones and orchestrates dynamic vector steering).
+  - Reclassified [`PipelineControlBar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/database/PipelineControlBar.tsx) from Combined to **`Complex Components/PipelineControlBar`** (operates as a toolbar sub-layout coordinating queue counters, batch execution, and status filtering).
+  - Reclassified [`BotTimingRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/agents/common/BotTimingRow.tsx) from Combined to **`Complex Components/BotTimingRow`** (domain-specific agent telemetry sub-layout with benchmark resets).
+  - Reclassified [`CompoundRuleItem`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/algorithm/CompoundRuleItem.tsx) from Combined to **`Complex Components/CompoundRuleItem`** (domain-specific algorithm rule row with math operators and steppers).
+  - Reclassified [`EmptyState`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/EmptyState.tsx) from Combined to **`Complex Components/EmptyState`** (composite placeholder layout pattern).
+  - Reclassified [`FeedCardMetaRow`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedCardMetaRow.tsx) from Combined to **`Complex Components/FeedCardMetaRow`** (domain-specific article intelligence strip with scoring, avatars, and actions).
+  - Reclassified [`MetricCard`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/MetricCard.tsx) from Combined to **`Complex Components/MetricCard`** (composite KPI scorecard mini-layout).
+  - Reserved **`Combined Components`** exclusively for generic, domain-agnostic composite controls (`FontSizeToggle`, `HeaderTokenBadge`, `LayoutSwitcher`, `NotificationBanner`, `PauseToggle`, `ThemeToggle`).
+  - Updated all Storybook stories, Anatomy cards, and sort order in [`.storybook/preview.ts`](file:///Users/aidanhall/Documents/code/ValetAI/.storybook/preview.ts).
+  - Verified 0 TypeScript errors (`npm run typecheck`), 30/30 unit tests passing (`npm test`), and rebuilt static Storybook bundle (`npm run build-storybook`). Restarted PM2 `ui` service.
+- [x] **Two-Row Settings Header & Responsive Mobile Navigation:**
+  - Standardized permanent 60px height for Row 1 so the top row never jumps when Row 2 reveals or collapses.
+  - Implemented smooth CSS grid animation (`0fr` to `1fr`) and opacity fade for revealing and hiding Row 2.
+  - Implemented invisible split in Row 2 matching the exact geometry of the menu drawer (252px) and page content (268px).
+  - Aligned left edge of breadcrumb tool to the exact same left margin and pixel position as the page title.
+  - Row 1 displays brand mark, view switcher (`Feed` vs `Settings`), and quick tools (`PauseToggle`, `FontSizeToggle`, `ThemeToggle`).
+  - Added responsive collapsing for tight viewports (hides tagline, collapses switcher and tool buttons to compact icons).
+  - Row 2 displays open chevron `<` with `SETTINGS` title on drawer open, or hamburger `☰` on drawer closed.
+  - Relocated live token badge to the far right end before the optional mobile close button `✕`.
+  - Configured token badge to hide gracefully when viewport space is narrow.
+  - Removed close button and top title bar from [`NavigationSidebar.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/NavigationSidebar.tsx).
+  - Configured navigation drawer to display full width under the header on mobile viewports.
+  - Removed duplicate breadcrumb bar from [`CommandCenter.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/CommandCenter.tsx).
+  - Created shared navigation helper in [`settingsNavigation.ts`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/utils/settingsNavigation.ts).
+  - Updated Storybook stories for [`AppHeader`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/__stories__/AppHeader.stories.tsx) and [`NavigationSidebar`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/__stories__/NavigationSidebar.stories.tsx).
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`), 30/30 unit tests passing (`npm test`), and rebuilt static Storybook bundle (`npm run build-storybook`). Restarted PM2 `ui` service.
+- [x] **Pause Toggle API Route Alignment:**
+  - Diagnosed route mismatch where [`PauseToggle.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/PauseToggle.tsx) queried `/api/system/pause` while Express only registered `/api/pause`.
+  - Added route aliases for `["/pause", "/system/pause"]` in [`systemRouter`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/routes/system.ts) for both `GET` and `POST` handlers.
+  - Added automated unit test in [`tests/health.test.ts`](file:///Users/aidanhall/Documents/code/ValetAI/tests/health.test.ts) validating pause and resume lifecycle state transitions.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`) and 31/31 unit tests passing (`npm test`). Restarted PM2 `ui` service.
+- [x] **SourceBadge Component, Inline Title Placement & Header Responsive Refinements:**
+  - Created [`SourceBadge.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/SourceBadge.tsx) as a generic combined component.
+  - Added support for single source with favicon and label.
+  - Added support for multi-source stacks with count badge and tooltip.
+  - Added support for emphasized cluster badges (`✦ +N`).
+  - Rendered semantic button when action exists. Rendered semantic span when static.
+  - Moved source and cluster badges inline with titles on cards across all layouts.
+  - Removed complex cluster drawer from article cards.
+  - Moved cluster drawer to [`ReaderModal.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderModal.tsx).
+  - Aligned breadcrumb left margin with page title in two-row settings header.
+  - Configured header action buttons to collapse to icons when space is tight.
+  - Added Storybook suite [`SourceBadge.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/SourceBadge.stories.tsx).
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`), 31/31 unit tests passing (`npm test`), and rebuilt Storybook bundle. Restarted PM2 `ui` service.
+- [x] **PillToggle Component, Read Filter & Card Styling Refinements:**
+  - Removed `is-heated` warm border styling from cards.
+  - Added diminished, disabled appearance for read cards (`opacity: 0.58`, subtle borders, muted text).
+  - Added distinct heavy styling for cluster cards (darker multi-layer shadow, 1.5px stronger border).
+  - Extracted reusable [`PillToggle`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/PillToggle.tsx) combined component.
+  - Added side-by-side "Read" and "Raw" pill toggles to [`FeedFilterBar.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedFilterBar.tsx).
+  - Wired live read article filtering into [`FeedView.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedView.tsx).
+  - Added Storybook story suite [`PillToggle.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/PillToggle.stories.tsx).
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`), 31/31 unit tests passing (`npm test`), and rebuilt Storybook bundle. Restarted PM2 `ui` service.
+- [x] **Storybook Documentation Header Cleanup:**
+  - Removed duplicate `Component Composition & Dependencies` markdown blocks from all 20 Storybook story files.
+  - Eliminated redundant text bullet points above component previews.
+  - Preserved visual [`ComponentAnatomy`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/AnatomyCard.tsx) stories.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`), 31/31 unit tests passing (`npm test`), and rebuilt Storybook bundle. Restarted PM2 `ui` service.
+- [x] **Component Library Parity & Storybook Documentation Improvement:**
+  - Relocated [`TokenCostModal`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/TokenCostModal.tsx) to `src/ui/components/common/TokenCostModal.tsx` for filesystem parity.
+  - Added backward-compatible re-export in [`TokenCostModal.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/TokenCostModal.tsx).
+  - Added Storybook suite [`Select.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/Select.stories.tsx) with validation states and anatomy cards.
+  - Added Storybook suite [`Textarea.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/Textarea.stories.tsx) with validation states and anatomy cards.
+  - Updated [`Input.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/__stories__/Input.stories.tsx) to focus strictly on single-line inputs.
+  - Added `Select` and `Textarea` to the Storybook sort order in [`.storybook/preview.ts`](file:///Users/aidanhall/Documents/code/ValetAI/.storybook/preview.ts).
+  - Added settings workspace preview stories (`SourcesTab`, `AlgorithmTab`, `DatabaseTab`, `ClosedDrawer`) in [`CommandCenter.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/__stories__/CommandCenter.stories.tsx).
+  - Aligned header breadcrumbs with the page title using a matching 250px column split.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 31 of 31 unit tests (`npm test`).
+  - Built static Storybook bundle without errors (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Full-Page Reader Experience & Header Row 2 Toolbar:**
+  - Converted the floating reader modal into a full-page [`ReaderPage`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderPage.tsx).
+  - Maintained the top header and added an animated second-row toolbar in [`AppHeader`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/AppHeader.tsx).
+  - Added voting, favourite, unread action, previous, next, and close controls to row 2.
+  - Added cluster count button to scroll directly to the clustered stories section.
+  - Removed the dividing line under the hero image and metadata row.
+  - Removed the subtitle and background card from the executive summary.
+  - Added an inline spark icon in front of the executive summary text.
+  - Removed duplicate cluster drawers from the article body.
+  - Moved entity pills and debug processing timings to the reader footer.
+  - Implemented iframe viewer toggle for in-page previews.
+  - Added shortcut: modifier key (Cmd/Ctrl) click opens source URL in a new window.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 31 of 31 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly in 4.8 seconds (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Iframe Refusal Detection & Reader Header Refinements:**
+  - Confirmed BBC and major news sites refuse iframe embedding via `X-Frame-Options: DENY`.
+  - Added [`iframeDetection.ts`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/utils/iframeDetection.ts) with client heuristics and server HEAD inspection.
+  - Added endpoint `GET /api/system/check-iframe` in [`system.ts`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/routes/system.ts).
+  - Configured [`ReaderPage.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderPage.tsx) to open refusing domains directly in a new tab.
+  - Extracted reusable [`ArticlePagination.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/ArticlePagination.tsx) with bold chevrons.
+  - Extracted reusable [`VoteControl.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/VoteControl.tsx) and unified across meta row and header.
+  - Restructured Reader row 2 toolbar to group evaluation on the left and actions on the right.
+  - Replaced external link glyph with standard SVG icon and emboldened close icon.
+  - Replaced Feed/Settings emojis with clean SVG icons and added 8px spacing.
+  - Fixed horizontal breadcrumb alignment in settings to align with the page title.
+  - Added responsive collapsing for header quick tools to icon-only buttons on small viewports.
+  - Added Storybook story suites for `ArticlePagination` and `VoteControl`.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 31 of 31 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Article Narrative Deduplication & Editorial Continuity:**
+  - Identified root cause where whitespace normalization merged article headlines into body text.
+  - Created [`articleNarrative.ts`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/utils/articleNarrative.ts) to extract distinct headlines and opening summaries without repetition.
+  - Updated [`stripHtmlAndEntities`](file:///Users/aidanhall/Documents/code/ValetAI/src/gatherer/index.ts) to preserve paragraph newlines across ingestion stages.
+  - Updated [`FeedCard.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedCard.tsx) and [`ReaderPage.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderPage.tsx) to render continuous, non-repeating narratives.
+  - Added `.feed-card-narrative` CSS container for editorial continuity between headline and deck.
+  - Repaired 344 historical records in `data/valet.db` to remove duplicate headline prefixes.
+  - Added unit test suite in [`article_narrative.test.ts`](file:///Users/aidanhall/Documents/code/ValetAI/tests/article_narrative.test.ts).
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 35 of 35 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly (`npm run build-storybook`).
+  - Restarted all PM2 services (`ui`, `agent`, `gatherer`).
+- [x] **Card Order Synchronized Navigation in Reader:**
+  - Synchronized Next and Previous navigation with the exact sorted and filtered order seen by the user.
+  - Updated [`FeedView.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedView.tsx) to pass the visible `orderedItems` array upon card selection.
+  - Stored `viewingList` state in [`App.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/App.tsx) for stable reader toolbar progression.
+  - Connected keyboard arrows (`ArrowLeft`, `ArrowRight`) in [`ReaderPage.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderPage.tsx) to the ordered list.
+  - Ensured position counters (`{index} of {total}`) accurately match visible feed items.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 35 of 35 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Feed Filter Bar in Header Row 2:**
+  - Moved the feed filter bar and layout switcher into row two of [`AppHeader.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/AppHeader.tsx).
+  - Ensured the header consistently displays two rows across all three modes (`feed`, `command`, `reader`).
+  - Added portal mount target `#header-feed-toolbar-portal` in [`AppHeader.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/AppHeader.tsx).
+  - Updated [`FeedView.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedView.tsx) to portal its controls with inline fallback for Storybook.
+  - Added `.feed-toolbar-layout` in [`base.css`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/styles/base.css) with centered max-width alignment.
+  - Added `.feed-unified-bar.in-header-row-2` in [`feed.css`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/styles/feed.css) with clean transparent styling.
+  - Adjusted feed container padding to prevent double margins.
+  - Updated [`AppHeader.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/__stories__/AppHeader.stories.tsx) to document row two in feed mode.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 35 of 35 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Valet Brand Mark Icon Update:**
+  - Updated the brand mark SVG in [`AppHeader.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/AppHeader.tsx).
+  - Replaced the previous polyline with the custom angled path vector.
+  - Set stroke width to 4.5 with rounded line caps and joints.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 35 of 35 unit tests (`npm test`).
+  - Built 103 Storybook stories cleanly (`npm run build-storybook`).
+  - Restarted PM2 `ui` service.
+- [x] **Favicon Generation and Brand Icon Integration:**
+  - Configured `vite-plugin-favicon-generator` in [`vite.config.ts`](file:///Users/aidanhall/Documents/code/ValetAI/vite.config.ts).
+  - Created root `public/` directory with `icon.svg`, `favicon.ico`, and mobile icons.
+  - Generated multi-resolution `favicon.ico` (16, 24, 32, 48, 64) using `favicons`.
+  - Updated [`manifest.webmanifest`](file:///Users/aidanhall/Documents/code/ValetAI/public/manifest.webmanifest) with Valet application metadata and brand theme color `#046090`.
+  - Mounted public static asset serving in [`src/ui/index.ts`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/index.ts).
+- [x] **Agent Header Contrast & Telemetry Pill Fix:**
+  - Diagnosed unreadable white pill caused by fallback `#f1f5f9` on undefined `--color-background-secondary`.
+  - Replaced invalid token references in [`command-center.css`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/styles/command-center.css) with semantic `var(--surface-subtle)`.
+  - Replaced invalid border variables with `var(--border-subtle)`.
+  - Updated bot identity name in [`AgentPageHeader.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/agents/common/AgentPageHeader.tsx) to use dynamic `--color-agent-*-light` tokens.
+  - Eliminated low-contrast purple text in dark theme.
+  - Replaced 7 non-existent token occurrences in [`ai-section.css`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/styles/ai-section.css).
+- [x] **Reader View RSS Button Integration:**
+  - Removed clunky `[Read original article at ??? ↗]` link from [`ReaderPage.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/ReaderPage.tsx).
+  - Added clean inline RSS feed badge in `.reader-meta-row-clean`.
+  - Added RSS feed link button in row two toolbar in [`AppHeader.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/layouts/AppHeader.tsx).
+  - Selected `src.url AS source_feed_url` in content query routes.
+  - Updated [`HydratedContentRecordSchema`](file:///Users/aidanhall/Documents/code/ValetAI/src/db/schema.ts) with `source_feed_url`.
+- [x] **Feed Filter Bar Standard Toggle Simplification:**
+  - Replaced overdesigned hybrid `PillToggle` with standard [`Toggle`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/Toggle.tsx) primitive.
+  - Added compact `size="sm"` switch variant to [`Toggle.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/common/Toggle.tsx) and [`components.css`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/styles/components.css).
+  - Simplified Read and Raw switches in [`FeedFilterBar.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/feed/FeedFilterBar.tsx).
+  - Rendered clean label and subtle item count.
+  - Removed visual noise from awkward dot, border, and badge combination.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`).
+  - Passed 35 of 35 unit tests (`npm test`).
+  - Rebuilt production UI bundle and Storybook.
+  - Restarted PM2 `ui` service.
+- [x] **Project Rules Modernization & Priority Parity Remediation:**
+  - Audited full application codebase against documentation, engineering, design tokens, and naming rules.
+  - Updated [`rules.md`](file:///Users/aidanhall/Documents/code/ValetAI/docs/rules.md) with modern engineering rules for migrations, API error handling, and testing standards.
+  - Achieved 100% ASD-STE100 sentence length compliance across rules documentation.
+  - Established root HTML class parity across 16 components with predictable `.<kebab-name>` classes.
+  - Renamed story file to [`ReaderPage.stories.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/reader/__stories__/ReaderPage.stories.tsx) to achieve 1:1 filename, component, and story title parity.
+  - Removed dead inlined `HoldToRunButton` from `DatabaseSection.tsx` and purged redundant `TokenCostModal.tsx` re-export file.
+  - Purged hardcoded hex colors and fallbacks across `base.css`, `reader-modal.css`, `database.css`, and `gatherer.css`.
+  - Extracted 263 lines of inlined stage headers into [`PipelineStageHeaderMenu.tsx`](file:///Users/aidanhall/Documents/code/ValetAI/src/ui/components/database/PipelineStageHeaderMenu.tsx) with dedicated Storybook stories.
+  - Reduced `DatabaseSection.tsx` by 280 lines.
+  - Added standard `start`, `stop`, `restart`, `status`, and `dev` scripts to `package.json`.
+  - Created [`README.md`](file:///Users/aidanhall/Documents/code/ValetAI/README.md) with quickstart, Node.js installation, custom server URL guidance, and model options in Simplified Technical English.
+  - Verified 0 TypeScript compilation errors (`npm run typecheck`). Passed all 35 unit tests (`npm test`). Built clean Storybook bundle.
+
+
+
+
+
+
+
+
+
+
+
